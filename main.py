@@ -32,19 +32,32 @@ def cache_zip(zip_file,cache_dir):
 		print("Cache directory needs to be empty to extract files to it.")
 
 def cached_files():
-	files= os.listdir('C:/Users/gebruiker/Desktop/winc/files/cache') 
+	files= os.listdir(dir_path+'/cache') 
 	absolute_files=[]
 
 	for file in files:
-		absolute_files.append(dir_path+'\\cache\\'+file) 
+		absolute_files.append(dir_path+'/cache/'+file) 
 
 	return absolute_files
 
 def find_password(dir_files):
-	for x in dir_files:
-		print(x)
+	letters=''
+	for file in dir_files:
+		text= open(file,'r').read()
+		if('password' in text):
+			letters=text
+
+	words=letters.split()
+	password=''
+
+	for x in range(len(words)):
+		if('password' in words[x]):
+			password=words[x+1]
+
+	return password
+
+
 
 clean_cache()
-cache_zip('C:/Users/gebruiker/Desktop/winc/files/data.zip','C:/Users/gebruiker/Desktop/winc/files/cache')
-#find_password(cached_files())
-
+cache_zip(dir_path+'/data.zip',dir_path+'/cache')
+print(find_password(cached_files()))
