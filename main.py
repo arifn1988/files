@@ -26,17 +26,17 @@ def cache_zip(zip_file,cache_dir):
 	file =  zipfile.ZipFile(zip_file)
 	files= os.listdir(cache_dir)
 
-	if(len(files)==0):
-		file.extractall(dir_path+'/cache')
-	else:
-		print("Cache directory needs to be empty to extract files to it.")
+	if(len(files)!=0):\
+		clean_cache()
+
+	file.extractall(dir_path+'/cache')
 
 def cached_files():
 	files= os.listdir(dir_path+'/cache') 
 	absolute_files=[]
 
 	for file in files:
-		absolute_files.append(dir_path+'/cache/'+file) 
+		absolute_files.append(dir_path+'\\cache\\'+file) 
 
 	return absolute_files
 
