@@ -26,7 +26,7 @@ def cache_zip(zip_file,cache_dir):
 	file =  zipfile.ZipFile(zip_file)
 	files= os.listdir(cache_dir)
 
-	if(len(files)!=0):\
+	if(len(files)!=0):
 		clean_cache()
 
 	file.extractall(dir_path+'/cache')
