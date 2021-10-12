@@ -32,16 +32,20 @@ def cache_zip(zip_file,cache_dir):
 
 
 def cached_files():
+	if(not path.exists(dir_path+'/cache')):
+		cache_zip(dir_path+'/data.zip',dir_path+'/cache')
+
 	files= os.listdir(dir_path+'/cache') 
 	absolute_files=[]
 
 	for file in files:
-		absolute_files.append(dir_path+'/cache/'+file) 
+		absolute_files.append(dir_path+'\\cache\\'+file) 
 
 	return absolute_files
 
 def find_password(dir_files):
 	letters=''
+
 	for file in dir_files:
 		text= open(file,'r').read()
 		if('password' in text):
@@ -58,6 +62,6 @@ def find_password(dir_files):
 
 
 
-clean_cache()
-cache_zip(dir_path+'/data.zip',dir_path+'/cache')
+#clean_cache()
+#cache_zip(dir_path+'/data.zip',dir_path+'/cache')
 print(find_password(cached_files()))
